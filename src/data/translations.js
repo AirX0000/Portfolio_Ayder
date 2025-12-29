@@ -61,7 +61,7 @@ export const translations = {
                     },
                     {
                         title: "Study Program",
-                        org: "Shanghai University",
+                        org: "EMLYON BUSINESS SCHOOL",
                         desc: "Academic and cultural exchange program in China.",
                         color: "text-red-400"
                     }
@@ -211,7 +211,7 @@ export const translations = {
                         status: "Alumni"
                     },
                     {
-                        uni: "Shanghai University",
+                        uni: "EMLYON BUSINESS SCHOOL",
                         faculty: "Exchange Program",
                         status: "Alumni"
                     }
@@ -299,7 +299,7 @@ export const translations = {
                     },
                     {
                         title: "Учебная программа",
-                        org: "Шанхайский Университет",
+                        org: "EMLYON BUSINESS SCHOOL",
                         desc: "Академическая и культурная программа обмена в Китае.",
                         color: "text-red-400"
                     }
@@ -449,7 +449,7 @@ export const translations = {
                         status: "Выпускник программы"
                     },
                     {
-                        uni: "Шанхайский Университет",
+                        uni: "EMLYON BUSINESS SCHOOL",
                         faculty: "Программа обмена",
                         status: "Выпускник программы"
                     }
