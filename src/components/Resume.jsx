@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin, ExternalLink, Printer, Github, Linkedin, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
 
 const Resume = () => {
     const { t, language, toggleLanguage } = useLanguage();
@@ -13,7 +14,7 @@ const Resume = () => {
         <div className="min-h-screen bg-gray-100 py-10 px-4 print:p-0 print:bg-white text-gray-800 font-sans">
             {/* Control Bar (Hidden when printing) */}
             <div className="max-w-[210mm] mx-auto mb-6 flex justify-between items-center print:hidden">
-                <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">{t.resume.back}</a>
+                <Link to="/" className="text-blue-600 hover:text-blue-800 font-medium">{t.resume.back}</Link>
                 <div className="flex gap-4">
                     <button
                         onClick={toggleLanguage}
