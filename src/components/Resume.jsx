@@ -125,10 +125,14 @@ const Resume = () => {
                         {/* Education */}
                         <section>
                             <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.resume.education.title}</h2>
-                            <div>
-                                <h3 className="font-bold text-gray-800 text-sm">{t.resume.education.uni}</h3>
-                                <p className="text-sm text-gray-600 italic">{t.resume.education.faculty}</p>
-                                <p className="text-xs text-gray-500 mt-1">{t.resume.education.status}</p>
+                            <div className="space-y-4">
+                                {t.resume.education.list.map((edu, index) => (
+                                    <div key={index}>
+                                        <h3 className="font-bold text-gray-800 text-sm">{edu.uni}</h3>
+                                        <p className="text-sm text-gray-600 italic">{edu.faculty}</p>
+                                        <p className="text-xs text-gray-500 mt-1">{edu.status}</p>
+                                    </div>
+                                ))}
                             </div>
                         </section>
 

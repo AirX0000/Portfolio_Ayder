@@ -42,6 +42,21 @@ const About = () => {
                                 </span>
                             </li>
                         </ul>
+
+                        <div className="mt-8 pt-6 border-t border-white/10">
+                            <h3 className="text-xl font-bold text-white mb-4">{t.about.international.title}</h3>
+                            <div className="space-y-4">
+                                {t.about.international.items.map((item, index) => (
+                                    <div key={index} className="group">
+                                        <div className="flex justify-between items-baseline mb-1">
+                                            <h4 className={`text-lg font-bold ${item.color} group-hover:brightness-110 transition-all`}>{item.title}</h4>
+                                            <span className="text-sm text-gray-500">{item.org}</span>
+                                        </div>
+                                        <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
 

@@ -43,6 +43,29 @@ export const translations = {
                 uni: "University",
                 faculty: "Faculty",
                 synergy: "Unique Synergy"
+            },
+            international: {
+                title: "International Experience",
+                items: [
+                    {
+                        title: "IT Fest",
+                        org: "Kazakhstan",
+                        desc: "Participated in one of the largest IT festivals in Central Asia.",
+                        color: "text-blue-400"
+                    },
+                    {
+                        title: "Study Program",
+                        org: "University of Cambridge",
+                        desc: "Immersive educational experience at one of the world's top universities.",
+                        color: "text-yellow-400"
+                    },
+                    {
+                        title: "Study Program",
+                        org: "Shanghai University",
+                        desc: "Academic and cultural exchange program in China.",
+                        color: "text-red-400"
+                    }
+                ]
             }
         },
         experience: {
@@ -51,14 +74,14 @@ export const translations = {
                 {
                     company: "British Management University",
                     role: "IT Specialist",
-                    date: "Sep 2024 - Apr 2025",
+                    date: "Sep 2025 - Apr 2025",
                     description: "Managed IT infrastructure and support.",
                     color: "border-neon"
                 },
                 {
                     company: "Qanot Sharq",
                     role: "Accounting Intern",
-                    date: "May 2024",
+                    date: "May 2025",
                     description: "Assisted with financial records and reporting.",
                     color: "border-secondary"
                 },
@@ -117,6 +140,14 @@ export const translations = {
             certified: "Certified",
             list: [
                 {
+                    name: "IT Fest 2025",
+                    issuer: "Kazakhstan",
+                    date: "2025",
+                    tags: ["Hackathon", "Networking", "Innovation"],
+                    color: "border-blue-400",
+                    link: "#"
+                },
+                {
                     name: "Foundations of Cybersecurity",
                     issuer: "Google",
                     date: "Oct 2025",
@@ -168,9 +199,23 @@ export const translations = {
             },
             education: {
                 title: "Education",
-                uni: "British Management University",
-                faculty: "Accounting & Finance",
-                status: "Current Student"
+                list: [
+                    {
+                        uni: "British Management University",
+                        faculty: "Accounting & Finance",
+                        status: "Current Student"
+                    },
+                    {
+                        uni: "University of Cambridge",
+                        faculty: "Summer Study Program",
+                        status: "Alumni"
+                    },
+                    {
+                        uni: "Shanghai University",
+                        faculty: "Exchange Program",
+                        status: "Alumni"
+                    }
+                ]
             },
             skills: {
                 title: "Technical Skills",
@@ -236,6 +281,29 @@ export const translations = {
                 uni: "Университет",
                 faculty: "Факультет",
                 synergy: "Синергия"
+            },
+            international: {
+                title: "Международный Опыт",
+                items: [
+                    {
+                        title: "IT Fest",
+                        org: "Казахстан",
+                        desc: "Участие в одном из крупнейших IT-фестивалей в Центральной Азии.",
+                        color: "text-blue-400"
+                    },
+                    {
+                        title: "Учебная программа",
+                        org: "Кембриджский Университет",
+                        desc: "Интенсивная образовательная программа в одном из лучших вузов мира.",
+                        color: "text-yellow-400"
+                    },
+                    {
+                        title: "Учебная программа",
+                        org: "Шанхайский Университет",
+                        desc: "Академическая и культурная программа обмена в Китае.",
+                        color: "text-red-400"
+                    }
+                ]
             }
         },
         experience: {
@@ -244,7 +312,7 @@ export const translations = {
                 {
                     company: "British Management University",
                     role: "IT Специалист",
-                    date: "Сен 2024 - Апр 2025",
+                    date: "Сен 2025 - Апр 2025",
                     description: "Управление IT-инфраструктурой и поддержка.",
                     color: "border-neon"
                 },
@@ -310,6 +378,14 @@ export const translations = {
             certified: "Сертифицирован",
             list: [
                 {
+                    name: "IT Fest INNO 2024",
+                    issuer: "Казахстан",
+                    date: "2024",
+                    tags: ["Хакатон", "Нетворкинг", "Инновации"],
+                    color: "border-blue-400",
+                    link: "#"
+                },
+                {
                     name: "Основы Кибербезопасности",
                     issuer: "Google",
                     date: "Окт 2025",
@@ -361,9 +437,23 @@ export const translations = {
             },
             education: {
                 title: "Образование",
-                uni: "British Management University",
-                faculty: "Учет и Финансы",
-                status: "Текущий студент"
+                list: [
+                    {
+                        uni: "British Management University",
+                        faculty: "Учет и Финансы",
+                        status: "Текущий студент"
+                    },
+                    {
+                        uni: "Кембриджский Университет",
+                        faculty: "Летняя программа",
+                        status: "Выпускник программы"
+                    },
+                    {
+                        uni: "Шанхайский Университет",
+                        faculty: "Программа обмена",
+                        status: "Выпускник программы"
+                    }
+                ]
             },
             skills: {
                 title: "Технические Навыки",
