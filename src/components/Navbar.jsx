@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { Menu, X, Globe } from 'lucide-react';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
     const { t, language, toggleLanguage } = useLanguage();
 
     // Scroll to top if already on home page
@@ -25,6 +26,29 @@ const Navbar = () => {
         { name: t.nav.contact, href: '#contact' },
     ];
 
+    const handleNavClick = (e, targetId) => {
+        e.preventDefault();
+        const id = targetId.replace('#', '');
+
+        if (location.pathname === '/') {
+            setIsOpen(false);
+            const element = document.getElementById(id);
+            if (element) {
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        } else {
+            setIsOpen(false);
+            navigate('/', { state: { targetId: id } });
+        }
+    };
+
     return (
         <nav className="fixed top-0 left-0 w-full z-50 bg-dark/80 backdrop-blur-md border-b border-white/10 px-6 py-4">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -42,7 +66,8 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            className="text-gray-300 hover:text-neon transition-colors duration-300 text-sm uppercase tracking-widest"
+                            onClick={(e) => handleNavClick(e, link.href)}
+                            className="text-gray-300 hover:text-neon transition-colors duration-300 text-sm uppercase tracking-widest cursor-pointer"
                         >
                             {link.name}
                         </a>
@@ -91,8 +116,8 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            className="text-gray-300 hover:text-neon text-lg"
-                            onClick={() => setIsOpen(false)}
+                            onClick={(e) => handleNavClick(e, link.href)}
+                            className="text-gray-300 hover:text-neon text-lg cursor-pointer"
                         >
                             {link.name}
                         </a>

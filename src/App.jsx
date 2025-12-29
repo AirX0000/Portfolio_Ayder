@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import CanvasContainer from './components/CanvasContainer';
 import CyberScene from './components/CyberScene';
 import Navbar from './components/Navbar';
@@ -17,6 +17,24 @@ import Resume from './components/Resume';
 // Main Portfolio Page Layout
 const Layout = () => {
   const [matrixMode, setMatrixMode] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.targetId) {
+      const element = document.getElementById(location.state.targetId);
+      if (element) {
+        setTimeout(() => {
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
     <div className="text-white relative">
