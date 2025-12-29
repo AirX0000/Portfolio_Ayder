@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
+    const { t, language, toggleLanguage } = useLanguage();
 
     // Scroll to top if already on home page
     const handleLogoClick = () => {
@@ -15,12 +17,12 @@ const Navbar = () => {
     };
 
     const links = [
-        { name: 'About', href: '#about' },
-        { name: 'Certificates', href: '#certificates' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Experience', href: '#experience' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Contact', href: '#contact' },
+        { name: t.nav.about, href: '#about' },
+        { name: t.nav.certificates, href: '#certificates' },
+        { name: t.nav.skills, href: '#skills' },
+        { name: t.nav.experience, href: '#experience' },
+        { name: t.nav.projects, href: '#projects' },
+        { name: t.nav.contact, href: '#contact' },
     ];
 
     return (
@@ -45,18 +47,37 @@ const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
+
+                    {/* Language Toggle */}
+                    <button
+                        onClick={toggleLanguage}
+                        className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+                    >
+                        <Globe size={18} />
+                        <span className="text-sm font-mono uppercase">{language}</span>
+                    </button>
+
                     <Link to="/resume" target="_blank" className="px-4 py-2 bg-neon/10 text-neon border border-neon/50 rounded hover:bg-neon/20 transition-all text-sm">
-                        Download CV
+                        {t.nav.cv}
                     </Link>
                 </div>
 
                 {/* Mobile Menu Button */}
-                <button
-                    className="md:hidden text-white"
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+                <div className="md:hidden flex items-center gap-4">
+                    <button
+                        onClick={toggleLanguage}
+                        className="text-gray-300 hover:text-white flex items-center gap-1"
+                    >
+                        <Globe size={20} />
+                        <span className="text-sm font-mono uppercase">{language}</span>
+                    </button>
+                    <button
+                        className="text-white"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu */}
@@ -76,6 +97,9 @@ const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
+                    <Link to="/resume" target="_blank" className="text-neon border border-neon/50 px-4 py-2 rounded">
+                        {t.nav.cv}
+                    </Link>
                 </motion.div>
             )}
         </nav>

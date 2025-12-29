@@ -1,9 +1,11 @@
 import Section from './Section';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
+    const { t } = useLanguage();
     // Array of roles to cycle through or display
-    const roles = ["Cyber Security Specialist", "Designer", "Video Editor", "Web Creator"];
+    const roles = t.hero.roles;
 
     return (
         <Section id="hero" className="min-h-screen flex items-center justify-center pt-0">
@@ -24,7 +26,7 @@ const Hero = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 1 }}
                 >
-                    &lt; <span className="text-secondary">SystemStatus</span> status="<span className="text-green-400">Online</span>" /&gt;
+                    &lt; <span className="text-secondary">{t.hero.statusValues.label}</span> status="<span className="text-green-400">{t.hero.statusValues.online}</span>" /&gt;
                 </motion.div>
 
                 <motion.div

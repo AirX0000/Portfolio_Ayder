@@ -2,26 +2,15 @@ import { useState } from 'react';
 import Section from './Section';
 import { Mail, Send, Phone, Instagram } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const projects = [
-    {
-        title: "Bot for BMU Canteen",
-        description: "Automated ordering and menu management system for the university canteen.",
-        tech: ["Python", "Aiogram", "PostgreSQL"],
-        status: "Completed"
-    },
-    {
-        title: "Accounting System",
-        description: "Comprehensive 1C replacement for accounting automation.",
-        tech: ["React", "Typescript", "Node.js"],
-        status: "In Progress"
-    }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const Projects = () => {
+    const { t } = useLanguage();
+    const projects = t.projects.list;
+
     return (
         <Section id="projects">
-            <h2 className="text-4xl font-cyber text-white mb-12 text-center">Featured <span className="text-purple-500">Projects</span></h2>
+            <h2 className="text-4xl font-cyber text-white mb-12 text-center">{t.projects.title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {projects.map((project, index) => (
                     <div key={index} className="group relative h-72 rounded-xl overflow-hidden bg-white/5 border border-white/10 hover:border-neon/50 transition-all duration-300">
@@ -30,7 +19,9 @@ const Projects = () => {
                         <div className="absolute bottom-0 left-0 p-8 w-full">
                             <div className="flex justify-between items-end mb-4">
                                 <h3 className="text-2xl font-bold text-white group-hover:text-neon transition-colors">{project.title}</h3>
-                                <span className="text-xs font-mono text-gray-400 bg-white/5 px-2 py-1 rounded border border-white/10">{project.status}</span>
+                                <span className="text-xs font-mono text-gray-400 bg-white/5 px-2 py-1 rounded border border-white/10">
+                                    {t.projects.status[project.status === 'completed' ? 'completed' : 'inProgress']}
+                                </span>
                             </div>
 
                             <p className="text-gray-300 mb-6 line-clamp-2">{project.description}</p>
@@ -52,12 +43,13 @@ const Projects = () => {
 
 const Contact = () => {
     const [activeContact, setActiveContact] = useState(null);
+    const { t } = useLanguage();
 
     const contactMethods = [
         {
             id: 'email',
             icon: <Mail size={24} />,
-            label: 'Email',
+            label: t.contact.methods.email,
             value: 'aiderparmankulov@gmail.com',
             action: 'mailto:aiderparmankulov@gmail.com',
             color: 'text-neon',
@@ -67,7 +59,7 @@ const Contact = () => {
         {
             id: 'telegram',
             icon: <Send size={24} />,
-            label: 'Telegram',
+            label: t.contact.methods.telegram,
             value: '@air_a_P',
             action: 'https://t.me/air_a_P',
             color: 'text-secondary',
@@ -77,7 +69,7 @@ const Contact = () => {
         {
             id: 'phone',
             icon: <Phone size={24} />,
-            label: 'Phone',
+            label: t.contact.methods.phone,
             value: '+998 (93) 517-91-46',
             action: 'tel:+998935179146',
             color: 'text-green-400',
@@ -87,7 +79,7 @@ const Contact = () => {
         {
             id: 'instagram',
             icon: <Instagram size={24} />,
-            label: 'Instagram',
+            label: t.contact.methods.instagram,
             value: '@air_a_p',
             action: 'https://www.instagram.com/air_a_p?igsh=MTFqZHcwYWR2MXRo&utm_source=qr',
             color: 'text-pink-500',
@@ -99,8 +91,8 @@ const Contact = () => {
     return (
         <Section id="contact" className="pb-20">
             <div className="max-w-xl mx-auto text-center border p-12 rounded-2xl border-white/10 bg-white/5 backdrop-blur-sm">
-                <h2 className="text-3xl font-cyber text-white mb-8">Initialize <span className="text-neon">Handshake</span></h2>
-                <p className="text-gray-400 mb-10">Select a channel to establish connection:</p>
+                <h2 className="text-3xl font-cyber text-white mb-8">{t.contact.title}</h2>
+                <p className="text-gray-400 mb-10">{t.contact.subtitle}</p>
 
                 {/* Icons Row */}
                 <div className="flex justify-center gap-6 mb-8">
@@ -109,8 +101,8 @@ const Contact = () => {
                             key={method.id}
                             onClick={() => setActiveContact(activeContact === method.id ? null : method.id)}
                             className={`p-4 rounded-full transition-all duration-300 border ${activeContact === method.id
-                                    ? `${method.bg} ${method.color} ${method.border} scale-110 shadow-[0_0_15px_currentColor]`
-                                    : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white'
+                                ? `${method.bg} ${method.color} ${method.border} scale-110 shadow-[0_0_15px_currentColor]`
+                                : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white'
                                 }`}
                         >
                             {method.icon}
@@ -148,7 +140,7 @@ const Contact = () => {
                                 animate={{ opacity: 1 }}
                                 className="text-sm text-gray-600 italic"
                             >
-                                Click an icon to reveal details
+                                {t.contact.reveal}
                             </motion.span>
                         )}
                     </AnimatePresence>

@@ -1,7 +1,10 @@
 import React from 'react';
-import { Mail, Phone, MapPin, ExternalLink, Printer, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, ExternalLink, Printer, Github, Linkedin, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Resume = () => {
+    const { t, language, toggleLanguage } = useLanguage();
+
     const printResume = () => {
         window.print();
     };
@@ -10,14 +13,23 @@ const Resume = () => {
         <div className="min-h-screen bg-gray-100 py-10 px-4 print:p-0 print:bg-white text-gray-800 font-sans">
             {/* Control Bar (Hidden when printing) */}
             <div className="max-w-[210mm] mx-auto mb-6 flex justify-between items-center print:hidden">
-                <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Portfolio</a>
-                <button
-                    onClick={printResume}
-                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium shadow-sm"
-                >
-                    <Printer size={18} />
-                    Save as PDF / Print
-                </button>
+                <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">{t.resume.back}</a>
+                <div className="flex gap-4">
+                    <button
+                        onClick={toggleLanguage}
+                        className="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-colors font-medium shadow-sm"
+                    >
+                        <Globe size={18} />
+                        <span className="uppercase">{language}</span>
+                    </button>
+                    <button
+                        onClick={printResume}
+                        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium shadow-sm"
+                    >
+                        <Printer size={18} />
+                        {t.resume.download}
+                    </button>
+                </div>
             </div>
 
             {/* A4 Resume Page */}
@@ -28,7 +40,7 @@ const Resume = () => {
                     <div className="flex justify-between items-end">
                         <div>
                             <h1 className="text-4xl font-bold text-gray-900 uppercase tracking-tight mb-2">Ayder Parmankulov</h1>
-                            <p className="text-xl text-gray-600 font-light">Cyber Security Specialist & Web Developer</p>
+                            <p className="text-xl text-gray-600 font-light">{t.resume.role}</p>
                         </div>
                         <div className="text-right text-sm text-gray-600 leading-relaxed">
                             <div className="flex items-center justify-end gap-2">
@@ -53,97 +65,55 @@ const Resume = () => {
 
                         {/* Summary */}
                         <section>
-                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Profile</h2>
+                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.resume.profile.title}</h2>
                             <p className="text-sm text-gray-600 leading-relaxed text-justify">
-                                Ambitious student at British Management University (Accounting & Finance) with a strong passion for Cyber Security and IT.
-                                Combining financial acumen with technical skills in network security, Linux administration, and web development.
-                                Enthusiastic about creating secure, efficient, and visually stunning digital solutions.
+                                {t.resume.profile.text}
                             </p>
                         </section>
 
                         {/* Experience */}
                         <section>
-                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Experience</h2>
+                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.experience.title}</h2>
 
-                            <div className="mb-4">
-                                <div className="flex justify-between items-baseline mb-1">
-                                    <h3 className="font-bold text-gray-800">British Management University</h3>
-                                    <span className="text-sm text-gray-500 italic">Sep 2024 - Apr 2025</span>
+                            {t.experience.list.map((exp, index) => (
+                                <div className="mb-4" key={index}>
+                                    <div className="flex justify-between items-baseline mb-1">
+                                        <h3 className="font-bold text-gray-800">{exp.company}</h3>
+                                        <span className="text-sm text-gray-500 italic">{exp.date}</span>
+                                    </div>
+                                    <h4 className="text-sm font-medium text-gray-700 mb-1">{exp.role}</h4>
+                                    <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                        <li>{exp.description}</li>
+                                    </ul>
                                 </div>
-                                <h4 className="text-sm font-medium text-gray-700 mb-1">IT Specialist</h4>
-                                <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                                    <li>Managed IT infrastructure and support.</li>
-                                </ul>
-                            </div>
-
-                            <div className="mb-4">
-                                <div className="flex justify-between items-baseline mb-1">
-                                    <h3 className="font-bold text-gray-800">Qanot Sharq</h3>
-                                    <span className="text-sm text-gray-500 italic">May 2024</span>
-                                </div>
-                                <h4 className="text-sm font-medium text-gray-700 mb-1">Accounting Intern</h4>
-                                <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                                    <li>Assisted with financial records and reporting.</li>
-                                </ul>
-                            </div>
-
-                            <div className="mb-4">
-                                <div className="flex justify-between items-baseline mb-1">
-                                    <h3 className="font-bold text-gray-800">Ipoteka Bank</h3>
-                                    <span className="text-sm text-gray-500 italic">June 2022</span>
-                                </div>
-                                <h4 className="text-sm font-medium text-gray-700 mb-1">Intern (IT Dept)</h4>
-                                <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                                    <li>Gained initial experience in banking IT systems.</li>
-                                </ul>
-                            </div>
+                            ))}
                         </section>
 
                         {/* Projects */}
                         <section>
-                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Key Projects</h2>
+                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.projects.title}</h2>
 
-                            <div className="mb-3">
-                                <div className="flex justify-between items-center mb-1">
-                                    <h3 className="font-bold text-gray-800 text-sm">Bot for BMU Canteen</h3>
-                                    <span className="text-xs px-2 py-0.5 bg-gray-200 rounded text-gray-600">Python, Telegram API</span>
+                            {t.projects.list.map((proj, index) => (
+                                <div className="mb-3" key={index}>
+                                    <div className="flex justify-between items-center mb-1">
+                                        <h3 className="font-bold text-gray-800 text-sm">{proj.title}</h3>
+                                        <span className="text-xs px-2 py-0.5 bg-gray-200 rounded text-gray-600">{proj.tech.join(', ')}</span>
+                                    </div>
+                                    <p className="text-xs text-gray-600">{proj.description}</p>
                                 </div>
-                                <p className="text-xs text-gray-600">Automated ordering system enhancing service speed and reducing queues in the university canteen.</p>
-                            </div>
-
-                            <div className="mb-3">
-                                <div className="flex justify-between items-center mb-1">
-                                    <h3 className="font-bold text-gray-800 text-sm">Accounting System</h3>
-                                    <span className="text-xs px-2 py-0.5 bg-gray-200 rounded text-gray-600">Excel, VBA</span>
-                                </div>
-                                <p className="text-xs text-gray-600">Custom automated spreadsheet for financial tracking and reporting.</p>
-                            </div>
+                            ))}
                         </section>
 
                         {/* Certificates */}
                         <section>
-                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Certifications</h2>
+                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.certificates.title}</h2>
                             <ul className="space-y-2">
-                                <li className="text-sm text-gray-700">
-                                    <span className="font-semibold block">Foundations of Cybersecurity</span>
-                                    <span className="text-xs text-gray-500">Google • Oct 2025</span>
-                                </li>
-                                <li className="text-sm text-gray-700">
-                                    <span className="font-semibold block">Play It Safe: Manage Security Risks</span>
-                                    <span className="text-xs text-gray-500">Google • Oct 2025</span>
-                                </li>
-                                <li className="text-sm text-gray-700">
-                                    <span className="font-semibold block">Connect and Protect: Networks</span>
-                                    <span className="text-xs text-gray-500">Google • Oct 2025</span>
-                                </li>
-                                <li className="text-sm text-gray-700">
-                                    <span className="font-semibold block">Tools of the Trade: Linux and SQL</span>
-                                    <span className="text-xs text-gray-500">Google • Oct 2025</span>
-                                </li>
-                                <li className="text-sm text-gray-700">
-                                    <span className="font-semibold block">Assets, Threats, and Vulnerabilities</span>
-                                    <span className="text-xs text-gray-500">Google • Oct 2025</span>
-                                </li>
+                                {t.certificates.list.map((cert, index) => (
+                                    <li className="text-sm text-gray-700" key={index}>
+                                        <span className="font-semibold block">{cert.name}</span>
+                                        <span className="text-xs text-gray-500">{cert.issuer} • {cert.date}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </section>
                     </div>
@@ -153,29 +123,32 @@ const Resume = () => {
 
                         {/* Education */}
                         <section>
-                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Education</h2>
+                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.resume.education.title}</h2>
                             <div>
-                                <h3 className="font-bold text-gray-800 text-sm">British Management University</h3>
-                                <p className="text-sm text-gray-600 italic">Accounting & Finance</p>
-                                <p className="text-xs text-gray-500 mt-1">Current Student</p>
+                                <h3 className="font-bold text-gray-800 text-sm">{t.resume.education.uni}</h3>
+                                <p className="text-sm text-gray-600 italic">{t.resume.education.faculty}</p>
+                                <p className="text-xs text-gray-500 mt-1">{t.resume.education.status}</p>
                             </div>
                         </section>
 
                         {/* Technical Skills */}
                         <section>
-                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Technical Skills</h2>
+                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.resume.skills.title}</h2>
 
                             <div className="mb-3">
-                                <h3 className="text-xs font-bold text-gray-500 uppercase mb-1">Cyber Security</h3>
+                                <h3 className="text-xs font-bold text-gray-500 uppercase mb-1">{t.resume.skills.cyber}</h3>
                                 <div className="flex flex-wrap gap-1">
-                                    {['Kali Linux', 'Burp Suite', 'Nmap', 'Metasploit', 'Wireshark'].map(skill => (
+                                    {t.skills.categories.core.items.filter(i => ['Cyber Security', 'Penetration Testing'].some(k => i.includes(k) || k.includes(i))).concat(['Kali Linux', 'Burp Suite', 'Nmap', 'Metasploit', 'Wireshark']).slice(0, 8).map(skill => (
                                         <span key={skill} className="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded">{skill}</span>
                                     ))}
+                                    {/* Note: I'm merging some hardcoded skills with dynamic ones for now, as the translations.js structure for skills is slightly different than what was in Resume.jsx originally. 
+                                         Ideally, we should standardize the skills list in translations.js to match exactly what is needed here, or just use the ones from translations.js directly. 
+                                         For now, I'll use the translations.js categories.core and design for consistency. */}
                                 </div>
                             </div>
 
                             <div className="mb-3">
-                                <h3 className="text-xs font-bold text-gray-500 uppercase mb-1">Development</h3>
+                                <h3 className="text-xs font-bold text-gray-500 uppercase mb-1">{t.resume.skills.dev}</h3>
                                 <div className="flex flex-wrap gap-1">
                                     {['Python', 'JavaScript', 'React', 'HTML/CSS', 'SQL', 'Git'].map(skill => (
                                         <span key={skill} className="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded">{skill}</span>
@@ -183,10 +156,11 @@ const Resume = () => {
                                 </div>
                             </div>
 
+
                             <div>
-                                <h3 className="text-xs font-bold text-gray-500 uppercase mb-1">Design & Tools</h3>
+                                <h3 className="text-xs font-bold text-gray-500 uppercase mb-1">{t.resume.skills.design}</h3>
                                 <div className="flex flex-wrap gap-1">
-                                    {['Figma', 'Photoshop', 'Premiere Pro', 'MS Office'].map(skill => (
+                                    {t.skills.categories.design.items.map(skill => (
                                         <span key={skill} className="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded">{skill}</span>
                                     ))}
                                 </div>
@@ -197,26 +171,20 @@ const Resume = () => {
 
                         {/* Languages */}
                         <section>
-                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Languages</h2>
+                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.resume.languages.title}</h2>
                             <ul className="text-sm text-gray-700 space-y-1">
-                                <li className="flex justify-between">
-                                    <span>Russian</span>
-                                    <span className="font-medium text-gray-500">Native</span>
-                                </li>
-                                <li className="flex justify-between">
-                                    <span>English</span>
-                                    <span className="font-medium text-gray-500">Advanced (C1)</span>
-                                </li>
-                                <li className="flex justify-between">
-                                    <span>Uzbek</span>
-                                    <span className="font-medium text-gray-500">Intermediate (B1)</span>
-                                </li>
+                                {t.resume.languages.list.map((lang, index) => (
+                                    <li className="flex justify-between" key={index}>
+                                        <span>{lang.name}</span>
+                                        <span className="font-medium text-gray-500">{lang.level}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </section>
 
                         {/* Links */}
                         <section>
-                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">Links</h2>
+                            <h2 className="text-lg font-bold text-gray-900 uppercase border-b border-gray-300 pb-1 mb-3">{t.resume.links.title}</h2>
                             <div className="space-y-2 text-sm text-blue-700">
                                 <a href="https://t.me/air_a_P" target="_blank" className="flex items-center gap-2 hover:underline">
                                     <ExternalLink size={12} /> Telegram (@air_a_P)
@@ -232,7 +200,7 @@ const Resume = () => {
             </div>
 
             <div className="text-center mt-6 print:hidden text-gray-500 text-xs">
-                Tip: Use the button above or Ctrl+P to save as PDF. Background graphics are removed for clean printing.
+                {t.resume.tip}
             </div>
         </div>
     );
