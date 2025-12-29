@@ -45,9 +45,9 @@ const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
-                    <a href="/resume" target="_blank" className="px-4 py-2 bg-neon/10 text-neon border border-neon/50 rounded hover:bg-neon/20 transition-all text-sm">
+                    <Link to="/resume" target="_blank" className="px-4 py-2 bg-neon/10 text-neon border border-neon/50 rounded hover:bg-neon/20 transition-all text-sm">
                         Download CV
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Mobile Menu Button */}
