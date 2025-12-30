@@ -74,7 +74,7 @@ export const translations = {
                 {
                     company: "British Management University",
                     role: "IT Specialist",
-                    date: "Sep 2025 - Apr 2025",
+                    date: "Sep 2024 - Apr 2025",
                     description: "Managed IT infrastructure and support.",
                     color: "border-neon"
                 },
@@ -312,7 +312,7 @@ export const translations = {
                 {
                     company: "British Management University",
                     role: "IT Специалист",
-                    date: "Сен 2025 - Апр 2025",
+                    date: "Сен 2024 - Апр 2025",
                     description: "Управление IT-инфраструктурой и поддержка.",
                     color: "border-neon"
                 },
