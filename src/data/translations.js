@@ -378,9 +378,9 @@ export const translations = {
             certified: "Сертифицирован",
             list: [
                 {
-                    name: "IT Fest INNO 2024",
+                    name: "IT Fest 2025",
                     issuer: "Казахстан",
-                    date: "2024",
+                    date: "2025",
                     tags: ["Хакатон", "Нетворкинг", "Инновации"],
                     color: "border-blue-400",
                     link: "#"
