@@ -37,6 +37,10 @@ export const translations = {
                 design: {
                     title: "Design & Content:",
                     desc: "Using Figma and Microsoft Designer to create visually compelling products, alongside video editing skills for storytelling."
+                },
+                ai: {
+                    title: "AI & Innovation:",
+                    desc: "Orchestrating advanced neural networks and agentic workflows to architect intelligent, next-gen digital solutions."
                 }
             },
             stats: {
@@ -275,6 +279,10 @@ export const translations = {
                 design: {
                     title: "Дизайн и Контент:",
                     desc: "Использование Figma и Microsoft Designer для создания визуально привлекательных продуктов и видеомонтаж для сторителлинга."
+                },
+                ai: {
+                    title: "ИИ и Инновации:",
+                    desc: "Внедрение передовых нейросетей и агентских процессов для создания интеллектуальных цифровых решений нового поколения."
                 }
             },
             stats: {

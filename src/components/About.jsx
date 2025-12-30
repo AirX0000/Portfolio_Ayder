@@ -41,6 +41,12 @@ const About = () => {
                                     <strong className="text-white">{t.about.skills.design.title}</strong> {t.about.skills.design.desc}
                                 </span>
                             </li>
+                            <li className="flex items-start gap-3">
+                                <span className="text-neon mt-1">▹</span>
+                                <span className="text-gray-300">
+                                    <strong className="text-white">{t.about.skills.ai.title}</strong> {t.about.skills.ai.desc}
+                                </span>
+                            </li>
                         </ul>
 
                         <div className="mt-8 pt-6 border-t border-white/10">
