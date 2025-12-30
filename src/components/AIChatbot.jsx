@@ -66,7 +66,10 @@ const AIChatbot = () => {
                 })
             });
 
-            if (!response.ok) throw new Error('API Error');
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Status: ${response.status}. Msg: ${errText.slice(0, 100)}`);
+            }
 
             const data = await response.json();
 
