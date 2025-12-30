@@ -44,45 +44,6 @@ const AIChatbot = () => {
     }, [language]);
 
 
-    const generateResponse = (text) => {
-        const lowerText = text.toLowerCase();
-
-        // Knowledge Base
-        const responses = {
-            en: {
-                greeting: ["Hi there!", "Hello! How can I help?", "Greetings! Ready to assist."],
-                skills: "Ayder is proficient in **Cyber Security** (Pentesting, Network Security), **Web Development** (React, Node.js), and **AI & Innovation** (Building bots, agentic workflows). He also excels in UI/UX Design.",
-                experience: "He has professional experience at **British Management University** (IT Specialist) and internships at **Qanot Sharq** (Accounting) and **Ipoteka Bank** (IT).",
-                contact: "You can reach Ayder via **Email** (aiderparmankulov@gmail.com) or **Telegram** (@air_a_P). He is open to collaboration!",
-                projects: "His featured projects include a **Telegram Bot for BMU Canteen**, an **accounting automation system**, and this very portfolio site!",
-                ai: "This bot shows Ayder's ability to integrate interactive logic. He builds intelligent systems that can automate tasks and engage users.",
-                unknown: "I'm still learning! Try asking about 'skills', 'experience', 'projects', or 'contact'."
-            },
-            ru: {
-                greeting: ["Привет!", "Здравствуйте! Чем могу помочь?", "Приветствую! Готов помочь."],
-                skills: "Айдер владеет **Кибербезопасностью** (Пентестинг, Сети), **Веб-разработкой** (React, Node.js) и **ИИ** (Создание ботов, агентских систем). Также силен в UI/UX дизайне.",
-                experience: "У него есть профессиональный опыт в **British Management University** (IT Специалист), а также стажировки в **Qanot Sharq** (Бухгалтерия) и **Ipoteka Bank** (IT).",
-                contact: "Вы можете связаться с Айдером через **Email** (aiderparmankulov@gmail.com) или **Telegram** (@air_a_P). Он открыт для сотрудничества!",
-                projects: "Среди проектов: **Бот для столовой BMU**, **система автоматизации учета** и этот сайт-портфолио!",
-                ai: "Этот бот демонстрирует способность Айдера создавать интерактивные системы. Он разрабатывает решения, которые автоматизируют рутину и вовлекают пользователей.",
-                unknown: "Я еще учусь! Попробуйте спросить про 'навыки', 'опыт', 'проекты' или 'контакты'."
-            }
-        };
-
-        const lang = language === 'ru' ? 'ru' : 'en';
-        const r = responses[lang];
-
-        if (lowerText.includes('hi') || lowerText.includes('hello') || lowerText.includes('привет')) return r.greeting[Math.floor(Math.random() * r.greeting.length)];
-        if (lowerText.includes('skill') || lowerText.includes('stack') || lowerText.includes('навык') || lowerText.includes('стек')) return r.skills;
-        if (lowerText.includes('exp') || lowerText.includes('work') || lowerText.includes('job') || lowerText.includes('опыт') || lowerText.includes('работ')) return r.experience;
-        if (lowerText.includes('contact') || lowerText.includes('email') || lowerText.includes('call') || lowerText.includes('контакт') || lowerText.includes('связ')) return r.contact;
-        if (lowerText.includes('project') || lowerText.includes('bot') || lowerText.includes('проект') || lowerText.includes('бот')) return r.projects;
-        if (lowerText.includes('ai') || lowerText.includes('ии') || lowerText.includes('intel')) return r.ai;
-        if (lowerText.includes('about') || lowerText.includes('who') || lowerText.includes('обо') || lowerText.includes('кто')) return `${r.skills} ${r.experience}`;
-
-        return r.unknown;
-    };
-
     const handleSend = async (e) => {
         e.preventDefault();
         if (!input.trim()) return;
@@ -92,12 +53,34 @@ const AIChatbot = () => {
         setMessages(prev => [...prev, { id: Date.now(), type: 'user', text: userMsg }]);
         setIsTyping(true);
 
-        // Simulate AI thinking delay
-        setTimeout(() => {
-            const responseText = generateResponse(userMsg);
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    messages: [...messages, { role: 'user', content: userMsg }].map(m => ({
+                        role: m.type === 'bot' ? 'assistant' : 'user',
+                        content: m.text
+                    })),
+                    language
+                })
+            });
+
+            if (!response.ok) throw new Error('API Error');
+
+            const data = await response.json();
+
+            setMessages(prev => [...prev, { id: Date.now() + 1, type: 'bot', text: data.reply }]);
+        } catch (error) {
+            console.error(error);
+            // Fallback for demo/error
+            const fallbackText = language === 'en'
+                ? "I'm having trouble connecting to my brain (API). Please check your internet or API configuration."
+                : "Проблемы с подключением к мозгу (API). Проверьте интернет или конфигурацию.";
+            setMessages(prev => [...prev, { id: Date.now() + 1, type: 'bot', text: fallbackText }]);
+        } finally {
             setIsTyping(false);
-            setMessages(prev => [...prev, { id: Date.now() + 1, type: 'bot', text: responseText }]);
-        }, 1200 + Math.random() * 800); // 1.2s - 2s delay
+        }
     };
 
     return (
