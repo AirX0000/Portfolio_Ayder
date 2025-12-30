@@ -19,7 +19,7 @@ export const translations = {
         about: {
             title: "About",
             me: "Me",
-            bio1: "I am currently a fast-learning student at",
+            bio1: "Professional with a background from",
             university: "British Management University",
             bio2: "specializing in",
             faculty: "Accounting & Finance",
@@ -195,7 +195,7 @@ export const translations = {
             role: "Cyber Security Specialist & Web Developer",
             profile: {
                 title: "Profile",
-                text: "Ambitious student at British Management University (Accounting & Finance) with a strong passion for Cyber Security and IT. Combining financial acumen with technical skills in network security, Linux administration, and web development. Enthusiastic about creating secure, efficient, and visually stunning digital solutions."
+                text: "Ambitious specialist from British Management University (Accounting & Finance) with a strong passion for Cyber Security and IT. Combining financial acumen with technical skills in network security, Linux administration, and web development. Enthusiastic about creating secure, efficient, and visually stunning digital solutions."
             },
             education: {
                 title: "Education",
@@ -203,7 +203,7 @@ export const translations = {
                     {
                         uni: "British Management University",
                         faculty: "Accounting & Finance",
-                        status: "Current Student"
+                        status: "Bachelor's Degree"
                     },
                     {
                         uni: "University of Cambridge",
@@ -257,7 +257,7 @@ export const translations = {
         about: {
             title: "Обо",
             me: "Мне",
-            bio1: "Я быстро обучающийся студент",
+            bio1: "Профессионал с бэкграундом из",
             university: "British Management University",
             bio2: "по специальности",
             faculty: "Учет и Финансы (Accounting & Finance)",
@@ -433,7 +433,7 @@ export const translations = {
             role: "Специалист по кибербезопасности и веб-разработчик",
             profile: {
                 title: "Профиль",
-                text: "Амбициозный студент British Management University (Учет и Финансы) с сильной страстью к кибербезопасности и IT. Сочетаю финансовую грамотность с техническими навыками в области сетевой безопасности, администрирования Linux и веб-разработки. Стремлюсь создавать безопасные, эффективные и визуально впечатляющие цифровые решения."
+                text: "Амбициозный специалист из British Management University (Учет и Финансы) с сильной страстью к кибербезопасности и IT. Сочетаю финансовую грамотность с техническими навыками в области сетевой безопасности, администрирования Linux и веб-разработки. Стремлюсь создавать безопасные, эффективные и визуально впечатляющие цифровые решения."
             },
             education: {
                 title: "Образование",
@@ -441,7 +441,7 @@ export const translations = {
                     {
                         uni: "British Management University",
                         faculty: "Учет и Финансы",
-                        status: "Текущий студент"
+                        status: "Бакалавр"
                     },
                     {
                         uni: "Кембриджский Университет",
