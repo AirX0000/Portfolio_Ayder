@@ -73,10 +73,9 @@ const AIChatbot = () => {
             setMessages(prev => [...prev, { id: Date.now() + 1, type: 'bot', text: data.reply }]);
         } catch (error) {
             console.error(error);
-            // Fallback for demo/error
             const fallbackText = language === 'en'
-                ? "I'm having trouble connecting to my brain (API). Please check your internet or API configuration."
-                : "Проблемы с подключением к мозгу (API). Проверьте интернет или конфигурацию.";
+                ? `Connection Error (${error.message}). Please check API Key in Vercel Settings.`
+                : `Ошибка подключения (${error.message}). Проверьте API ключ в настройках Vercel.`;
             setMessages(prev => [...prev, { id: Date.now() + 1, type: 'bot', text: fallbackText }]);
         } finally {
             setIsTyping(false);
