@@ -12,6 +12,7 @@ import { Projects, Contact } from './components/ProjectsContact';
 import Terminal from './components/Terminal';
 import TechTicker from './components/TechTicker';
 import MatrixRain from './components/MatrixRain';
+import AIChatbot from './components/AIChatbot';
 import Resume from './components/Resume';
 
 // Main Portfolio Page Layout
@@ -52,6 +53,7 @@ const Layout = () => {
         }
         return null;
       }} />
+      <AIChatbot />
 
       <main className="relative z-10 flex flex-col gap-0">
         <Hero />
