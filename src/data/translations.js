@@ -81,7 +81,7 @@ export const translations = {
                 {
                     company: "Qanot Sharq",
                     role: "Accounting Intern",
-                    date: "May 2025",
+                    date: "May 2024",
                     description: "Assisted with financial records and reporting.",
                     color: "border-secondary"
                 },
