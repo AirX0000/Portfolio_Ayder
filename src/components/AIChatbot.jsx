@@ -78,6 +78,7 @@ const AIChatbot = () => {
         if (lowerText.includes('contact') || lowerText.includes('email') || lowerText.includes('call') || lowerText.includes('контакт') || lowerText.includes('связ')) return r.contact;
         if (lowerText.includes('project') || lowerText.includes('bot') || lowerText.includes('проект') || lowerText.includes('бот')) return r.projects;
         if (lowerText.includes('ai') || lowerText.includes('ии') || lowerText.includes('intel')) return r.ai;
+        if (lowerText.includes('about') || lowerText.includes('who') || lowerText.includes('обо') || lowerText.includes('кто')) return `${r.skills} ${r.experience}`;
 
         return r.unknown;
     };
@@ -159,8 +160,8 @@ const AIChatbot = () => {
                                 >
                                     <div
                                         className={`max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed ${msg.type === 'user'
-                                                ? 'bg-blue-600/20 border border-blue-500/30 text-white rounded-tr-sm'
-                                                : 'bg-white/5 border border-white/10 text-gray-200 rounded-tl-sm shadow-sm'
+                                            ? 'bg-blue-600/20 border border-blue-500/30 text-white rounded-tr-sm'
+                                            : 'bg-white/5 border border-white/10 text-gray-200 rounded-tl-sm shadow-sm'
                                             }`}
                                     >
                                         {msg.text.split('**').map((part, i) =>
